@@ -3,13 +3,13 @@ get_header();
 
 while (have_posts()) {
     the_post(); ?>
-    <h1>
+    <h1>this is my page</h1>
+    <h2>
         <?php the_title(); ?>
-    </h1>
+    </h2>
     <p>
         <?php the_content() ?>
     </p>
-    dfsdf
 <?php }
 
 get_footer();
