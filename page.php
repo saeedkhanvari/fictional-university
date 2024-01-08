@@ -33,8 +33,13 @@ while (have_posts()) {
         </div>
     <?php } ?>
 
+    <?php
+    $testArray = get_pages(
+        array('child_of' => get_the_ID())
+    );
+    if($theParentId or $testArray ) { ?>
     <div class="page-links">
-        <h2 class="page-links__title"><a href="#">About Us</a></h2>
+        <h2 class="page-links__title"><a href="<?php echo get_the_permalink($theParentId)?>"><?php echo get_the_title($theParentId)?></a></h2>
         <ul class="min-list">
             <?php
             if ($theParentId) {
@@ -44,12 +49,12 @@ while (have_posts()) {
                 $findChildrenOf = get_the_ID();
                 //this mean the time that you are not in child page and you dont have parent
             }
-            wp_list_pages(array('title_li' => Null, 'child_of' => $findChildrenOf));
+            wp_list_pages(array('title_li' => Null, 'child_of' => $findChildrenOf , 'sort_column' => 'menu_order ' ));
             // this line of code means that when you have a parent you can see all child pages of your parent and choose one of theme but when you dont have any parent you can access to child page of your own page by using id (get_the_ID() function)
             ?>
         </ul>
     </div>
-
+    <?php } ?>        
     <div class="generic-content">
         <?php the_content() ?>
     </div>
