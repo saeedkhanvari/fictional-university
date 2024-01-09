@@ -18,20 +18,20 @@
       <div class="site-header__menu group">
         <nav class="main-navigation">
           <!-- // here is how to show an dynamic menu by using php insted of hard coded html -->
-          <?php
+          <!-- <?php
           wp_nav_menu(
             array(
               'theme_location' => 'headerMenuLocation'
             )
           );
-          ?>
-          <!-- <ul>
+          ?> -->
+          <ul>
               <li><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
               <li><a href="<?php echo site_url('/programs') ?>">Programs</a></li>
               <li><a href="<?php echo site_url('/events') ?>">Events</a></li>
               <li><a href="<?php echo site_url('/compuses') ?>">Campuses</a></li>
               <li><a href="#">Blog</a></li>
-            </ul> -->
+            </ul>
         </nav>
         <div class="site-header__util">
           <a href="#" class="btn btn--small btn--orange float-left push-right">Login</a>
