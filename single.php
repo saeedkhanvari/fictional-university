@@ -9,7 +9,6 @@ while (have_posts()) {
     <p>
         <?php the_content() ?>
     </p>
-    dfsdf
 <?php }
 
 get_footer();

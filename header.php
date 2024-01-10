@@ -26,7 +26,7 @@
           );
           ?> -->
           <ul>
-              <li><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
+              <li <?php if(is_page('about-us') or wp_get_post_parent_id(0) == 16) echo 'class = "current-menu-item"'  ?>><a href="<?php echo site_url('/about-us') ?>">About Us</a></li>
               <li><a href="<?php echo site_url('/programs') ?>">Programs</a></li>
               <li><a href="<?php echo site_url('/events') ?>">Events</a></li>
               <li><a href="<?php echo site_url('/compuses') ?>">Campuses</a></li>
