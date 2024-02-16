@@ -33,10 +33,15 @@ get_the_title(); // in this kind of function you will RETURN s.th that you can u
         <div class="event-summary">
           <a class="event-summary__date t-center" href="<?php the_permalink() ?>">
             <span class="event-summary__month">
-              <?php the_time('M') ?>
+              <?php 
+                $eventDate = new DateTime(get_field('event_date'));
+                echo $eventDate -> format('M')
+              ?>
             </span>
             <span class="event-summary__day">
-              <?php the_time('d') ?>
+            <?php 
+                echo $eventDate -> format('d')
+              ?>
             </span>
           </a>
           <div class="event-summary__content">
