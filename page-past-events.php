@@ -8,18 +8,39 @@ get_header(); ?>
         style="background-image: url(<?php echo get_theme_file_uri('images/ocean.jpg') ?>)"></div>
     <div class="page-banner__content container container--narrow">
         <h1 class="page-banner__title">
-            All Events
+            Past Events
         </h1>
         <div class="page-banner__intro">
             <p>
-                See What is going on in our world
+                recap of our past events
         </div>
     </div>
 </div>
 
 <div class="container container--narrow page-section">
-    <?php while (have_posts()):
-        the_post(); ?>
+    <?php
+    $toDay = date('Ymd');
+    $pastEvent = new WP_Query(
+        array(
+            'paged' => get_query_var('paged', 1),
+            'posts_per_page' => '1',
+            'post_type' => 'event',
+            'meta_key' => 'event_date',
+            'orderby' => 'meta_value_num',
+            'order' => 'ASC',
+            'meta_query' => array(
+              array(
+                'key' => 'event_date',
+                'compare' => '<',
+                'value' => $toDay,
+                'type' => 'numeric'
+              )
+            )
+          )
+        );
+
+    while ($pastEvent->have_posts()):
+       $pastEvent -> the_post(); ?>
 
         <div class="event-summary">
             <a class="event-summary__date t-center" href="<?php the_permalink() ?>">
@@ -50,10 +71,11 @@ get_header(); ?>
     <?php endwhile; ?>
 
     <?php
-    echo paginate_links();
+    echo paginate_links(array(
+        'total' => $pastEvent -> max_num_pages
+    ));
     ?>
 
-<p>looking for past events ? <a href="<?php echo site_url('/past-events') ?>">Check them here</a>.</p>
 </div>
 
 <?php get_footer();
